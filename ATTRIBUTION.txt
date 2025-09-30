@@ -1,0 +1,14 @@
+Preferred Attribution
+---------------------
+Please credit as:
+
+  Jason Faulkner (theodddoctorr)
+
+Aliases (also published as): The OddDocTorr, DocTorr Why
+
+License: CC BY 4.0 — https://creativecommons.org/licenses/by/4.0/
+If you adapt or build upon this work, indicate changes and retain attribution.
+
+Suggested Citation
+------------------
+Faulkner, Jason (2025). Cascading Agent Architecture for Memory Retrieval. CC BY 4.0.

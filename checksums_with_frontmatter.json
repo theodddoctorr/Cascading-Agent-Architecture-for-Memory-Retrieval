@@ -1,0 +1,16 @@
+{
+  "artifacts": [
+    {
+      "original_file": "paper to do.pdf",
+      "original_sha256": "7f361e4716a399bad545f1babae9f50153fb5c7f934c19eab03f3380dcb78564",
+      "with_front_matter": "paper to do - with front matter.pdf",
+      "new_sha256": "9dd78b59c6369c5ffa990a6d21f6061ee1eb2788a2ac23543f3ca7c6c456bccc"
+    },
+    {
+      "original_file": "Cascading Agent Architecture for Memory Retrieval.pdf",
+      "original_sha256": "5a44dde1a86a40f74267aa5e84800616dadb711afb363257470e4e3924fe5662",
+      "with_front_matter": "Cascading Agent Architecture for Memory Retrieval - with front matter.pdf",
+      "new_sha256": "b99637d76e9c3421f6401a9282a948c80b161cacede07b6e1bc1f30be601b10a"
+    }
+  ]
+}

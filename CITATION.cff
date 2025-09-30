@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "Please cite this work if you use it."
+title: "Cascading Agent Architecture for Memory Retrieval"
+authors:
+  - family-names: "Faulkner"
+    given-names: "Jason"
+    name-particle: ""
+    name-suffix: ""
+    affiliation: ""
+    website: ""
+    alias:
+      - "The OddDocTorr"
+      - "DocTorr Why"
+date-released: "2025-09-30"
+version: "1.0.0"
+license: "CC-BY-4.0"
+type: article
+preferred-citation:
+  type: article
+  authors:
+    - family-names: "Faulkner"
+      given-names: "Jason"
+  title: "Cascading Agent Architecture for Memory Retrieval"
+  year: 2025
+  notes: "Preprint"
