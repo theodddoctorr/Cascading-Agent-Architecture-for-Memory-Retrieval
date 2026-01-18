@@ -30,8 +30,15 @@ jobs:
       run: |
         echo "Validating checksum for research paper..."
 
-        # Expected checksum from checksums file
-        EXPECTED_CHECKSUM=$(cat checksums_with_frontmatter.json | grep -o '"sha256": "[^"]*"' | cut -d'"' -f4)
+        # Expected checksum from checksums file (using Python for proper JSON parsing)
+        EXPECTED_CHECKSUM=$(python3 -c "
+        import json
+        with open('checksums_with_frontmatter.json', 'r') as f:
+            data = json.load(f)
+            for artifact in data['artifacts']:
+                if artifact['original_file'] == 'Cascading Agent Architecture for Memory Retrieval.pdf':
+                    print(artifact['original_sha256'])
+        ")
 
         # Calculate actual checksum
         ACTUAL_CHECKSUM=$(sha256sum "Cascading Agent Architecture for Memory Retrieval.pdf" | cut -d' ' -f1)
