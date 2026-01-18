@@ -1,0 +1,100 @@
+# Dependabot configuration for automated dependency updates
+# See: https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+
+version: 2
+
+updates:
+  # GitHub Actions workflow dependencies
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "America/New_York"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "github-actions"
+      - "automated"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    reviewers:
+      - "theodddoctorr"
+    assignees:
+      - "theodddoctorr"
+
+  # Python dependencies (if/when added)
+  # Uncomment when Python code is added to the repository
+  # - package-ecosystem: "pip"
+  #   directory: "/"
+  #   schedule:
+  #     interval: "weekly"
+  #     day: "monday"
+  #   open-pull-requests-limit: 10
+  #   labels:
+  #     - "dependencies"
+  #     - "python"
+  #   commit-message:
+  #     prefix: "chore"
+  #     include: "scope"
+  #   versioning-strategy: increase
+
+  # npm/yarn dependencies (if/when added)
+  # Uncomment when Node.js code is added to the repository
+  # - package-ecosystem: "npm"
+  #   directory: "/"
+  #   schedule:
+  #     interval: "weekly"
+  #     day: "monday"
+  #   open-pull-requests-limit: 10
+  #   labels:
+  #     - "dependencies"
+  #     - "javascript"
+  #   commit-message:
+  #     prefix: "chore"
+  #     include: "scope"
+  #   versioning-strategy: increase
+
+  # Rust dependencies (if/when added)
+  # Uncomment when Rust code is added to the repository
+  # - package-ecosystem: "cargo"
+  #   directory: "/"
+  #   schedule:
+  #     interval: "weekly"
+  #     day: "monday"
+  #   open-pull-requests-limit: 5
+  #   labels:
+  #     - "dependencies"
+  #     - "rust"
+  #   commit-message:
+  #     prefix: "chore"
+  #     include: "scope"
+
+  # Docker dependencies (if/when added)
+  # Uncomment when Dockerfile is added to the repository
+  # - package-ecosystem: "docker"
+  #   directory: "/"
+  #   schedule:
+  #     interval: "weekly"
+  #     day: "monday"
+  #   open-pull-requests-limit: 3
+  #   labels:
+  #     - "dependencies"
+  #     - "docker"
+  #   commit-message:
+  #     prefix: "chore"
+  #     include: "scope"
+
+# Security updates are always enabled by default for supported ecosystems
+# To enable Dependabot security updates:
+# 1. Go to repository Settings
+# 2. Click "Code security and analysis"
+# 3. Enable "Dependabot security updates"
+
+# Notes:
+# - Currently only GitHub Actions dependencies are tracked
+# - As code is added to the repository, uncomment the relevant sections above
+# - Dependabot will automatically create PRs for outdated dependencies
+# - Review and merge PRs to keep dependencies up to date

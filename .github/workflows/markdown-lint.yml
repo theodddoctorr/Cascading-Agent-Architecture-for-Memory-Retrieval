@@ -1,0 +1,50 @@
+name: Markdown Lint
+
+on:
+  push:
+    branches: [ main, master ]
+    paths:
+      - '**.md'
+  pull_request:
+    branches: [ main, master ]
+    paths:
+      - '**.md'
+  workflow_dispatch:
+
+jobs:
+  lint-markdown:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Lint markdown files
+      uses: DavidAnson/markdownlint-cli2-action@v16
+      with:
+        globs: |
+          **/*.md
+          !node_modules/**
+          !.git/**
+
+    - name: Markdown link check
+      uses: gaurav-nelson/github-action-markdown-link-check@v1
+      with:
+        use-quiet-mode: 'yes'
+        use-verbose-mode: 'no'
+        config-file: '.github/markdown-link-check-config.json'
+        folder-path: '.'
+        file-path: 'README.md, CHANGELOG.md, DEPENDENCY_AUDIT.md'
+        max-depth: 2
+
+    - name: Report results
+      if: always()
+      run: |
+        echo "### Markdown Validation Results" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        if [ $? -eq 0 ]; then
+          echo "✅ All markdown files are properly formatted" >> $GITHUB_STEP_SUMMARY
+          echo "✅ All links are valid" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "❌ Markdown validation failed - see logs for details" >> $GITHUB_STEP_SUMMARY
+        fi

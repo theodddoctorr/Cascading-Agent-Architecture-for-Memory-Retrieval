@@ -1,0 +1,14 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 💬 GitHub Discussions
+    url: https://github.com/theodddoctorr/Cascading-Agent-Architecture-for-Memory-Retrieval/discussions
+    about: Ask questions, share ideas, or discuss the architecture
+  - name: 🔒 Security Vulnerability
+    url: https://github.com/theodddoctorr/Cascading-Agent-Architecture-for-Memory-Retrieval/security/advisories/new
+    about: Report security vulnerabilities privately (do not create public issues)
+  - name: 📖 Documentation
+    url: https://github.com/theodddoctorr/Cascading-Agent-Architecture-for-Memory-Retrieval/blob/main/README.md
+    about: Read the project documentation and research paper
+  - name: ❓ Get Support
+    url: https://github.com/theodddoctorr/Cascading-Agent-Architecture-for-Memory-Retrieval/blob/main/.github/SUPPORT.md
+    about: Learn how to get help with the project
