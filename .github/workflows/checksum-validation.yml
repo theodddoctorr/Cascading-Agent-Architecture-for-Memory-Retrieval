@@ -1,0 +1,74 @@
+name: Checksum Validation
+
+on:
+  push:
+    branches: [ main, master ]
+    paths:
+      - '**.pdf'
+      - 'checksums_with_frontmatter.json'
+  pull_request:
+    branches: [ main, master ]
+    paths:
+      - '**.pdf'
+      - 'checksums_with_frontmatter.json'
+  workflow_dispatch:
+
+jobs:
+  validate-checksums:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Validate PDF checksum
+      run: |
+        echo "Validating checksum for research paper..."
+
+        # Expected checksum from checksums file (using Python for proper JSON parsing)
+        EXPECTED_CHECKSUM=$(python3 -c "
+        import json
+        with open('checksums_with_frontmatter.json', 'r') as f:
+            data = json.load(f)
+            for artifact in data['artifacts']:
+                if artifact['original_file'] == 'Cascading Agent Architecture for Memory Retrieval.pdf':
+                    print(artifact['original_sha256'])
+        ")
+
+        # Calculate actual checksum
+        ACTUAL_CHECKSUM=$(sha256sum "Cascading Agent Architecture for Memory Retrieval.pdf" | cut -d' ' -f1)
+
+        echo "Expected: $EXPECTED_CHECKSUM"
+        echo "Actual:   $ACTUAL_CHECKSUM"
+
+        if [ "$EXPECTED_CHECKSUM" == "$ACTUAL_CHECKSUM" ]; then
+          echo "✅ Checksum validation passed!"
+          exit 0
+        else
+          echo "❌ Checksum validation failed!"
+          echo "The PDF file has been modified but the checksum was not updated."
+          echo "Please update checksums_with_frontmatter.json with the new checksum."
+          exit 1
+        fi
+
+    - name: Verify checksums file format
+      run: |
+        echo "Verifying checksums file is valid JSON..."
+        python3 -m json.tool checksums_with_frontmatter.json > /dev/null
+        echo "✅ Checksums file is valid JSON"
+
+    - name: Report results
+      if: always()
+      run: |
+        echo "### Checksum Validation Results" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        if [ $? -eq 0 ]; then
+          echo "✅ All checksums validated successfully" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "❌ Checksum validation failed - see logs for details" >> $GITHUB_STEP_SUMMARY
+        fi

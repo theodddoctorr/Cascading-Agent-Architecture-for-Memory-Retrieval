@@ -1,0 +1,41 @@
+# Configuration for typos spell checker
+# See: https://github.com/crate-ci/typos
+
+[default]
+extend-ignore-re = [
+  # Ignore checksums and hashes
+  "[a-fA-F0-9]{32,}",
+  # Ignore URLs
+  "https?://[^\\s]+",
+]
+
+[files]
+extend-exclude = [
+  "*.pdf",
+  "*.json",
+  ".git/",
+  "node_modules/",
+  "target/",
+  "dist/",
+]
+
+[default.extend-words]
+# Add custom dictionary words here (words that are correct but not in default dictionary)
+# Format: incorrectword = "correctword" or word = "word" to accept as-is
+
+# Technical terms
+DocTorr = "DocTorr"
+OddDocTorr = "OddDocTorr"
+
+# Architecture terms (add more as needed)
+cascading = "cascading"
+retrieval = "retrieval"
+
+# Proper nouns
+Faulkner = "Faulkner"
+
+[type.md]
+extend-glob = ["*.md"]
+
+[type.txt]
+extend-glob = ["*.txt"]
